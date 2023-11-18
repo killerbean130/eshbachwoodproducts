@@ -1,118 +1,204 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
+import logo from "../../public/ewpl.png";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const about = useRef<HTMLDivElement>(null);
+  const products = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", (e: any) => {
+      const ids = [];
+      let target = e.target;
+      while (target.parentElement) {
+        ids.push(target.id);
+        target = target.parentElement;
+      }
+      if (!ids.includes("dropdown")) {
+        setDropdownOpen(false);
+      }
+    });
+  }, []);
+
+  function scrollToRef(ref: any) {
+    const topPadding = window.screen.width > 768 ? 155 : 155;
+    window.scrollTo({
+      top: ref.current?.offsetTop! - topPadding,
+      behavior: "smooth",
+    });
+  }
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <div>
+      <header className="sticky top-0 z-40 dark:bg-[#222] bg-slate-100 py-8 px-8">
+        <nav className="flex justify-between">
+          <div className="flex w-24 h-20 relative">
+            <button>
+              <Image
+                src={logo}
+                fill={true}
+                placeholder="blur"
+                alt="eshbach wood products logo"
+              />
+            </button>
+          </div>
+
+          <div className="relative flex items-center">
+            <button
+              id="dropdown"
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              className="md:hidden p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              aria-label="navigation dropdown menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="42"
+                height="42"
+                fill="currentColor"
+                className="bi bi-list"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                />
+              </svg>
+            </button>
+            {dropdownOpen && (
+              <>
+                <div className="w-4 h-4 right-5 rotate-45 top-[4.7rem] absolute z-10 bg-blue-600"></div>
+                <ul className="flex flex-col gap-4 absolute text-2xl p-6 right-0 top-20 bg-blue-600">
+                  <li>
+                    <button>about</button>
+                  </li>
+                  <li>
+                    <button>products</button>
+                  </li>
+                  <li>
+                    <button>contact</button>
+                  </li>
+                </ul>
+              </>
+            )}
+          </div>
+
+          <ul className="md:flex gap-4 text-2xl hidden items-center">
+            <li>
+              <button>about</button>
+            </li>
+            <li>
+              <button>products</button>
+            </li>
+            <li>
+              <button>contact</button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div
+        ref={about}
+        className="min-h-[85vh] mt-14 items-center flex flex-col gap-32"
+      >
+        <div className="flex flex-col items-center gap-4 font-bold">
+          <div className="flex w-52 h-48 relative">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src={logo}
+              fill={true}
+              placeholder="blur"
+              alt="eshbach wood products logo"
             />
-          </a>
+          </div>
+          <h1 className="text-5xl">Eshbach Wood Products</h1>
+          <h2 className="text-4xl">
+            The Heart of Lancaster's Woodworking Artistry
+          </h2>
+        </div>
+        <p className="text-2xl w-[80%] md:w-[75%] lg:w-[50%]">
+          Welcome to Eshbach Wood Products, where the art of woodcraft meets the
+          heart of sustainability. Our specialty lies in creating stunning end
+          grain table tops and durable end grain flooring, each piece a
+          testament to the natural beauty of Pennsylvania's forests. Crafted
+          from sustainably harvested lumber, our products not only add elegance
+          and character to your space but also embody our commitment to
+          environmental stewardship. Experience the blend of traditional
+          craftsmanship and modern sustainability with Eshbach Wood Products.
+        </p>
+
+        <button
+          onClick={() => scrollToRef(products)}
+          className="flex gap-2 group items-center text-3xl bg-green-500 p-4 border-transparent hover:border-white border transition-all hover:bg-[#22de5e] rounded-md text-black"
+        >
+          Explore Our Products
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="34"
+            height="34"
+            fill="currentColor"
+            className="bi bi-arrow-down-short group-hover:animate-bounce"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex items-center gap-16 flex-col px-8">
+        <h2 className="text-5xl font-bold">Our Products</h2>
+        <div ref={products} className="min-h-screen gap-28 flex flex-col">
+          <div className="flex">
+            <div>
+              <h3 className="text-3xl text-green-500">End Grain Flooring</h3>
+              <p className="text-lg">
+                At Eshbach Wood Products, our end grain flooring stands as a
+                hallmark of exceptional craftsmanship. Each piece is
+                meticulously cut to showcase the intricate and unique growth
+                rings of Pennsylvania's finest woods. Renowned for its
+                resilience and ability to withstand heavy foot traffic, our end
+                grain flooring brings a touch of Lancaster's natural elegance to
+                homes and businesses alike, offering a perfect blend of style,
+                sustainability, and long-lasting quality.
+              </p>
+            </div>
+            <div>Images</div>
+          </div>
+          <div className="flex flex-row-reverse">
+            <div>
+              <h3 className="text-3xl text-green-500">
+                Sustainably Harvested Lumber
+              </h3>
+              <p className="text-lg">
+                Our commitment to sustainability is a testament to our
+                dedication to quality, environmental stewardship, and social
+                responsibility. At Eshbach Wood Products, we strive to balance
+                ecological health with economic viability, ensuring that our
+                business not only thrives but also contributes positively to a
+                more sustainable future for all.
+              </p>
+            </div>
+            <div>Images</div>
+          </div>
+          <div className="flex">
+            <div>
+              <h3 className="text-3xl text-green-500">End Grain Table Tops</h3>
+              <p className="text-lg">
+                Eshbach Wood Products takes pride in crafting exquisite end
+                grain table tops, each a masterpiece of natural artistry. Our
+                table tops, made from the finest Pennsylvania woods, feature a
+                distinctive end grain pattern that not only adds visual depth
+                and character but also ensures remarkable durability. Creating a
+                focal point of beauty and timeless design in any setting.
+              </p>
+            </div>
+            <div>Images</div>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      <div className="min-h-screen">contact</div>
+    </div>
+  );
 }
