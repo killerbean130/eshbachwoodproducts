@@ -1,12 +1,16 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import logo from "../../public/ewpl.png";
+import instagramLogo from "../../public/instagram.png";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import Link from "next/link";
 
 export default function Home() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const about = useRef<HTMLDivElement>(null);
-  const products = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener("click", (e: any) => {
@@ -23,7 +27,7 @@ export default function Home() {
   }, []);
 
   function scrollToRef(ref: any) {
-    const topPadding = window.screen.width > 768 ? 155 : 155;
+    const topPadding = window.screen.width > 768 ? 300 : 235;
     window.scrollTo({
       top: ref.current?.offsetTop! - topPadding,
       behavior: "smooth",
@@ -31,10 +35,10 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <header className="sticky top-0 z-40 dark:bg-[#222] bg-slate-100 py-8 px-8">
+    <div className="flex flex-col">
+      <header className="sticky top-0 z-40 dark:bg-[#222] bg-green-500 md:py-8 py-4 px-8">
         <nav className="flex justify-between">
-          <div className="flex w-24 h-20 relative">
+          <div className="flex md:w-24 md:h-20 w-20 h-16 relative">
             <button>
               <Image
                 src={logo}
@@ -49,7 +53,7 @@ export default function Home() {
             <button
               id="dropdown"
               onClick={() => setDropdownOpen((prev) => !prev)}
-              className="md:hidden p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="md:hidden p-2"
               aria-label="navigation dropdown menu"
             >
               <svg
@@ -68,16 +72,20 @@ export default function Home() {
             </button>
             {dropdownOpen && (
               <>
-                <div className="w-4 h-4 right-5 rotate-45 top-[4.7rem] absolute z-10 bg-blue-600"></div>
-                <ul className="flex flex-col gap-4 absolute text-2xl p-6 right-0 top-20 bg-blue-600">
+                <div className="w-4 h-4 right-5 rotate-45 top-[4.7rem] absolute z-10 bg-gray-200"></div>
+                <ul className="flex flex-col gap-4 absolute text-2xl p-6 right-0 top-20 bg-gray-200">
                   <li>
-                    <button>about</button>
+                    <button onClick={() => scrollToRef(aboutRef)}>about</button>
                   </li>
                   <li>
-                    <button>products</button>
+                    <button onClick={() => scrollToRef(productsRef)}>
+                      products
+                    </button>
                   </li>
                   <li>
-                    <button>contact</button>
+                    <button onClick={() => scrollToRef(contactRef)}>
+                      contact
+                    </button>
                   </li>
                 </ul>
               </>
@@ -86,23 +94,23 @@ export default function Home() {
 
           <ul className="md:flex gap-4 text-2xl hidden items-center">
             <li>
-              <button>about</button>
+              <button onClick={() => scrollToRef(aboutRef)}>about</button>
             </li>
             <li>
-              <button>products</button>
+              <button onClick={() => scrollToRef(productsRef)}>products</button>
             </li>
             <li>
-              <button>contact</button>
+              <button onClick={() => scrollToRef(contactRef)}>contact</button>
             </li>
           </ul>
         </nav>
       </header>
       <div
-        ref={about}
-        className="min-h-[85vh] mt-14 items-center flex flex-col gap-32"
+        ref={aboutRef}
+        className="min-h-[85vh] mt-14 items-center flex flex-col md:gap-32 gap-10"
       >
         <div className="flex flex-col items-center gap-4 font-bold">
-          <div className="flex w-52 h-48 relative">
+          <div className="flex md:w-52 md:h-48 w-36 h-32 relative">
             <Image
               src={logo}
               fill={true}
@@ -110,12 +118,12 @@ export default function Home() {
               alt="eshbach wood products logo"
             />
           </div>
-          <h1 className="text-5xl">Eshbach Wood Products</h1>
-          <h2 className="text-4xl">
+          <h1 className="md:text-5xl text-2xl">Eshbach Wood Products</h1>
+          <h2 className="md:text-4xl text-xl text-center">
             The Heart of Lancaster's Woodworking Artistry
           </h2>
         </div>
-        <p className="text-2xl w-[80%] md:w-[75%] lg:w-[50%]">
+        <p className="md:text-2xl text-center text-lg w-[80%] md:w-[75%] lg:w-[50%]">
           Welcome to Eshbach Wood Products, where the art of woodcraft meets the
           heart of sustainability. Our specialty lies in creating stunning end
           grain table tops and durable end grain flooring, each piece a
@@ -127,8 +135,8 @@ export default function Home() {
         </p>
 
         <button
-          onClick={() => scrollToRef(products)}
-          className="flex gap-2 group items-center text-3xl bg-green-500 p-4 border-transparent hover:border-white border transition-all hover:bg-[#22de5e] rounded-md text-black"
+          onClick={() => scrollToRef(productsRef)}
+          className="flex gap-2 group items-center text-white md:text-3xl text-lg bg-green-500 p-4 border-transparent dark:hover:border-white hover:border-black border transition-all hover:bg-[#22de5e] rounded-md dark:text-black"
         >
           Explore Our Products
           <svg
@@ -147,58 +155,146 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="flex items-center gap-16 flex-col px-8">
-        <h2 className="text-5xl font-bold">Our Products</h2>
-        <div ref={products} className="min-h-screen gap-28 flex flex-col">
-          <div className="flex">
-            <div>
-              <h3 className="text-3xl text-green-500">End Grain Flooring</h3>
-              <p className="text-lg">
-                At Eshbach Wood Products, our end grain flooring stands as a
+      <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 mt-20">
+        <h2 className="md:text-5xl text-3xl font-bold">Our Products</h2>
+        <div ref={productsRef} className="min-h-screen gap-52 flex flex-col">
+          <ProductSection
+            text="At Eshbach Wood Products, our end grain flooring stands as a
                 hallmark of exceptional craftsmanship. Each piece is
                 meticulously cut to showcase the intricate and unique growth
                 rings of Pennsylvania's finest woods. Renowned for its
                 resilience and ability to withstand heavy foot traffic, our end
                 grain flooring brings a touch of Lancaster's natural elegance to
                 homes and businesses alike, offering a perfect blend of style,
-                sustainability, and long-lasting quality.
-              </p>
-            </div>
-            <div>Images</div>
-          </div>
-          <div className="flex flex-row-reverse">
-            <div>
-              <h3 className="text-3xl text-green-500">
-                Sustainably Harvested Lumber
-              </h3>
-              <p className="text-lg">
-                Our commitment to sustainability is a testament to our
-                dedication to quality, environmental stewardship, and social
-                responsibility. At Eshbach Wood Products, we strive to balance
-                ecological health with economic viability, ensuring that our
-                business not only thrives but also contributes positively to a
-                more sustainable future for all.
-              </p>
-            </div>
-            <div>Images</div>
-          </div>
-          <div className="flex">
-            <div>
-              <h3 className="text-3xl text-green-500">End Grain Table Tops</h3>
-              <p className="text-lg">
-                Eshbach Wood Products takes pride in crafting exquisite end
-                grain table tops, each a masterpiece of natural artistry. Our
-                table tops, made from the finest Pennsylvania woods, feature a
-                distinctive end grain pattern that not only adds visual depth
-                and character but also ensures remarkable durability. Creating a
-                focal point of beauty and timeless design in any setting.
-              </p>
-            </div>
-            <div>Images</div>
-          </div>
+                sustainability, and long-lasting quality."
+            heading="End Grain Flooring"
+          >
+            <ImageFocus src={logo} alt="test" />
+          </ProductSection>
+          <ProductSection
+            reverse
+            text="Our commitment to sustainability is a testament to our
+            dedication to quality, environmental stewardship, and social
+            responsibility. At Eshbach Wood Products, we strive to balance
+            ecological health with economic viability, ensuring that our
+            business not only thrives but also contributes positively to a
+            more sustainable future for all."
+            heading="Sustainably Harvested Lumber"
+          >
+            <div className="flex-1">Images</div>
+          </ProductSection>
+          <ProductSection
+            text="Eshbach Wood Products takes pride in crafting exquisite end
+            grain table tops, each a masterpiece of natural artistry. Our
+            table tops, made from the finest Pennsylvania woods, feature a
+            distinctive end grain pattern that not only adds visual depth
+            and character but also ensures remarkable durability. Creating a
+            focal point of beauty and timeless design in any setting."
+            heading="End Grain Table Tops"
+          >
+            <div className="flex-1">Images</div>
+          </ProductSection>
         </div>
       </div>
-      <div className="min-h-screen">contact</div>
+      <div
+        ref={contactRef}
+        className="min-h-screen mt-12 flex flex-col gap-16 items-center"
+      >
+        <h2 className="md:text-5xl text-3xl font-bold">Contact Us</h2>
+        <div className="flex flex-col gap-4 bg-green-500 text-center text-black rounded-md text-3xl p-8">
+          <div>
+            <p>Give us a call</p>
+            <a href="tel:+17177999517">(717) 799-9517</a>
+          </div>
+          <p>or</p>
+          <div>
+            <p>Message us</p>
+            <a href="mailto:">test@test.com</a>
+          </div>
+        </div>
+        <div>
+          <Link
+            className="w-40 h-40 relative block"
+            href="https://www.instagram.com/eshbachwoodproducts/"
+          >
+            <Image src={instagramLogo} fill={true} alt="Instagram logo" />
+          </Link>
+        </div>
+      </div>
+      <div className="flex justify-between text-xs px-2">
+        <p>Eshbachwoodproducts © 2023</p>
+        <p>website by Daniel Comp</p>
+      </div>
     </div>
   );
 }
+
+const ProductSection = ({
+  heading,
+  text,
+  children,
+  reverse = false,
+}: {
+  heading: string;
+  text: string;
+  children: JSX.Element;
+  reverse?: boolean;
+}) => {
+  return (
+    <div
+      className={`flex md:flex-row flex-col ${
+        reverse ? "md:flex-row-reverse" : ""
+      }`}
+    >
+      <div className="flex-1 gap-2 flex flex-col">
+        <h3 className="text-3xl text-green-600 font-semibold">{heading}</h3>
+        <p className="text-lg">{text}</p>
+      </div>
+      <div className="flex-1">{children}</div>
+    </div>
+  );
+};
+
+const ImageFocus = ({ src, alt }: { src: StaticImageData; alt: string }) => {
+  const [imageFocused, setImageFocused] = useState(false);
+
+  return (
+    <>
+      <Image
+        onClick={() => setImageFocused(true)}
+        className="cursor-pointer"
+        src={src}
+        width={100}
+        height={100}
+        alt={alt}
+      />
+      {imageFocused &&
+        createPortal(
+          <>
+            <div className="fixed left-0 top-0 h-screen w-screen z-50 bg-black opacity-30"></div>
+            <div
+              onClick={() => setImageFocused(false)}
+              className="fixed w-screen h-screen top-0 left-0 z-[100] flex justify-center items-center"
+            >
+              <div className="lg:w-[50rem] lg:h-[50rem] sm:w-[30rem] w-[20rem] h-[20rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] relative flex">
+                <Image
+                  onClick={() => setImageFocused(true)}
+                  src={src}
+                  fill={true}
+                  alt={alt}
+                />
+                <button
+                  onClick={() => setImageFocused(false)}
+                  className="absolute right-0 top-0 text-2xl rounded-full"
+                  aria-label="close image modal"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          </>,
+          document.querySelector("#__next") as Element
+        )}
+    </>
+  );
+};
