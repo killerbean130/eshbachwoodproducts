@@ -253,7 +253,8 @@ export default function Home() {
             <a href="mailto:">test@test.com</a>
           </div>
         </div>
-        <div>
+        <div className="flex flex-col items-center gap-4">
+          <p className="font-semibold text-4xl">Follow Us</p>
           <Link
             className="w-40 h-40 relative block"
             href="https://www.instagram.com/eshbachwoodproducts/"
