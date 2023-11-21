@@ -125,7 +125,7 @@ export default function Home() {
           </div>
           <div>
             <h1 className="md:text-5xl text-2xl">Eshbach Wood Products</h1>
-            <p>est. 1965</p>
+            <p className="text-center">est. 2009</p>
           </div>
           <h2 className="md:text-4xl text-xl text-center">
             The Heart of Lancaster's Woodworking Artistry
