@@ -1,9 +1,14 @@
 import Image, { StaticImageData } from "next/image";
-import logo from "../../public/ewpl.png";
-import instagramLogo from "../../public/instagram.png";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+
+import logo from "../../public/ewpl.png";
+import instagramLogo from "../../public/instagram.png";
+import shl1 from "../../public/shl1.jpg";
+import shl2 from "../../public/shl2.jpg";
+import shl3 from "../../public/shl3.jpg";
+import shl4 from "../../public/shl4.jpg";
 
 export default function Home() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -73,7 +78,7 @@ export default function Home() {
             {dropdownOpen && (
               <>
                 <div className="w-4 h-4 right-5 rotate-45 top-[4.7rem] absolute z-10 bg-gray-200"></div>
-                <ul className="flex flex-col gap-4 absolute text-2xl p-6 right-0 top-20 bg-gray-200">
+                <ul className="dark:text-black flex flex-col gap-4 absolute text-2xl p-6 right-0 top-20 bg-gray-200">
                   <li>
                     <button onClick={() => scrollToRef(aboutRef)}>about</button>
                   </li>
@@ -157,7 +162,10 @@ export default function Home() {
 
       <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 mt-20">
         <h2 className="md:text-5xl text-3xl font-bold">Our Products</h2>
-        <div ref={productsRef} className="min-h-screen gap-52 flex flex-col">
+        <div
+          ref={productsRef}
+          className="min-h-screen md:gap-52 gap-16 flex flex-col"
+        >
           <ProductSection
             text="At Eshbach Wood Products, our end grain flooring stands as a
                 hallmark of exceptional craftsmanship. Each piece is
@@ -181,7 +189,40 @@ export default function Home() {
             more sustainable future for all."
             heading="Sustainably Harvested Lumber"
           >
-            <div className="flex-1">Images</div>
+            <ImagePresentationColumn>
+              <ImagePresentationRow>
+                <ImagePresentationWrapper>
+                  <ImageFocus
+                    fill={true}
+                    src={shl1}
+                    alt="sustainably harvested lumber"
+                  />
+                </ImagePresentationWrapper>
+                <ImagePresentationWrapper>
+                  <ImageFocus
+                    fill={true}
+                    src={shl2}
+                    alt="sustainably harvested lumber"
+                  />
+                </ImagePresentationWrapper>
+              </ImagePresentationRow>
+              <ImagePresentationRow>
+                <ImagePresentationWrapper>
+                  <ImageFocus
+                    fill={true}
+                    src={shl3}
+                    alt="sustainably harvested lumber"
+                  />
+                </ImagePresentationWrapper>
+                <ImagePresentationWrapper>
+                  <ImageFocus
+                    fill={true}
+                    src={shl4}
+                    alt="sustainably harvested lumber"
+                  />
+                </ImagePresentationWrapper>
+              </ImagePresentationRow>
+            </ImagePresentationColumn>
           </ProductSection>
           <ProductSection
             text="Eshbach Wood Products takes pride in crafting exquisite end
@@ -198,7 +239,7 @@ export default function Home() {
       </div>
       <div
         ref={contactRef}
-        className="min-h-screen mt-12 flex flex-col gap-16 items-center"
+        className="min-h-screen mt-36 flex flex-col gap-16 items-center"
       >
         <h2 className="md:text-5xl text-3xl font-bold">Contact Us</h2>
         <div className="flex flex-col gap-4 bg-green-500 text-center text-black rounded-md text-3xl p-8">
@@ -222,7 +263,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-between text-xs px-2">
-        <p>Eshbachwoodproducts © 2023</p>
+        <p>Eshbachwoodproducts LLC © 2023</p>
         <p>website by Daniel Comp</p>
       </div>
     </div>
@@ -242,7 +283,7 @@ const ProductSection = ({
 }) => {
   return (
     <div
-      className={`flex md:flex-row flex-col ${
+      className={`flex gap-10 md:flex-row flex-col ${
         reverse ? "md:flex-row-reverse" : ""
       }`}
     >
@@ -255,7 +296,19 @@ const ProductSection = ({
   );
 };
 
-const ImageFocus = ({ src, alt }: { src: StaticImageData; alt: string }) => {
+const ImageFocus = ({
+  src,
+  alt,
+  fill,
+  width,
+  height,
+}: {
+  src: StaticImageData;
+  alt: string;
+  fill?: boolean;
+  width?: number;
+  height?: number;
+}) => {
   const [imageFocused, setImageFocused] = useState(false);
 
   return (
@@ -264,8 +317,9 @@ const ImageFocus = ({ src, alt }: { src: StaticImageData; alt: string }) => {
         onClick={() => setImageFocused(true)}
         className="cursor-pointer"
         src={src}
-        width={100}
-        height={100}
+        fill={fill}
+        width={fill ? undefined : width ? width : 100}
+        height={fill ? undefined : height ? height : 100}
         alt={alt}
       />
       {imageFocused &&
@@ -276,7 +330,7 @@ const ImageFocus = ({ src, alt }: { src: StaticImageData; alt: string }) => {
               onClick={() => setImageFocused(false)}
               className="fixed w-screen h-screen top-0 left-0 z-[100] flex justify-center items-center"
             >
-              <div className="lg:w-[50rem] lg:h-[50rem] sm:w-[30rem] w-[20rem] h-[20rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] relative flex">
+              <div className="lg:w-[55rem] lg:h-[50rem] sm:w-[35rem] w-[25rem] h-[20rem] sm:h-[30rem] md:w-[45rem] md:h-[40rem] relative flex">
                 <Image
                   onClick={() => setImageFocused(true)}
                   src={src}
@@ -297,4 +351,22 @@ const ImageFocus = ({ src, alt }: { src: StaticImageData; alt: string }) => {
         )}
     </>
   );
+};
+
+const ImagePresentationWrapper = ({ children }: { children: JSX.Element }) => {
+  return (
+    <div className="relative flex w-[8.5rem] h-[8rem] md:w-[15rem] md:h-[11.5rem] lg:w-[20rem] lg:h-[16.5rem]">
+      {children}
+    </div>
+  );
+};
+
+const ImagePresentationColumn = ({ children }: { children: JSX.Element[] }) => {
+  return (
+    <div className="flex lg:gap-8 gap-4 flex-col items-center">{children}</div>
+  );
+};
+
+const ImagePresentationRow = ({ children }: { children: JSX.Element[] }) => {
+  return <div className="flex lg:gap-4 gap-2">{children}</div>;
 };
