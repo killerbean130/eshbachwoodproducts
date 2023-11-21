@@ -123,7 +123,10 @@ export default function Home() {
               alt="eshbach wood products logo"
             />
           </div>
-          <h1 className="md:text-5xl text-2xl">Eshbach Wood Products</h1>
+          <div>
+            <h1 className="md:text-5xl text-2xl">Eshbach Wood Products</h1>
+            <p>est. 1965</p>
+          </div>
           <h2 className="md:text-4xl text-xl text-center">
             The Heart of Lancaster's Woodworking Artistry
           </h2>
