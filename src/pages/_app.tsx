@@ -41,20 +41,20 @@ export default function App({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap"
           rel="stylesheet"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-PH94PQX5DQ"
-        ></Script>
-        <Script>
-          {`
+      </Head>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PH94PQX5DQ"
+      ></Script>
+      <Script>
+        {`
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-PH94PQX5DQ');
 `}
-        </Script>
-      </Head>
+      </Script>
       <Component {...pageProps} />
     </>
   );
