@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap"
           rel="stylesheet"
         />
       </Head>

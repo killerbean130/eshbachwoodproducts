@@ -44,7 +44,7 @@ export default function Home() {
       <header className="sticky top-0 z-40 dark:bg-[#222] bg-green-500 md:py-8 py-4 px-8">
         <nav className="flex justify-between">
           <div className="flex md:w-24 md:h-20 w-20 h-16 relative">
-            <button>
+            <button onClick={() => scrollToRef(aboutRef)}>
               <Image
                 src={logo}
                 fill={true}
@@ -114,7 +114,7 @@ export default function Home() {
         ref={aboutRef}
         className="min-h-[85vh] mt-14 items-center flex flex-col md:gap-32 gap-10"
       >
-        <div className="flex flex-col items-center gap-4 font-bold">
+        <div className="flex flex-col items-center gap-4">
           <div className="flex md:w-52 md:h-48 w-36 h-32 relative">
             <Image
               src={logo}
@@ -124,12 +124,12 @@ export default function Home() {
             />
           </div>
           <div>
-            <h1 className="md:text-5xl text-2xl font-cinzel">
+            <h1 className="md:text-5xl text-center text-2xl font-cinzel">
               Eshbach Wood Products
             </h1>
-            <p className="text-center">est. 2009</p>
+            <p className="text-center md:text-sm text-[0.65rem] ">est. 2009</p>
           </div>
-          <h2 className="md:text-4xl text-xl text-center">
+          <h2 className="md:text-4xl text-xl text-center font-semibold">
             The Heart of Lancaster's Woodworking Artistry
           </h2>
         </div>
