@@ -9,6 +9,8 @@ import shl1 from "../../public/shl1.jpg";
 import shl2 from "../../public/shl2.jpg";
 import shl3 from "../../public/shl3.jpg";
 import shl4 from "../../public/shl4.jpg";
+import egf1 from "../../public/egf1.jpg";
+import egf2 from "../../public/egf2.jpg";
 
 export default function Home() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -127,7 +129,7 @@ export default function Home() {
             <h1 className="md:text-5xl text-center text-2xl font-cinzel">
               Eshbach Wood Products
             </h1>
-            <p className="text-center md:text-sm text-[0.65rem] ">est. 2009</p>
+            <p className="text-center md:text-sm text-[0.65rem]">est. 2009</p>
           </div>
           <h2 className="md:text-4xl text-xl text-center font-semibold">
             The Heart of Lancaster's Woodworking Artistry
@@ -165,7 +167,7 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 mt-20">
+      <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 2xl:px-[24rem] mt-20">
         <h2 className="md:text-5xl text-3xl font-bold">Our Products</h2>
         <div
           ref={productsRef}
@@ -182,8 +184,31 @@ export default function Home() {
                 sustainability, and long-lasting quality."
             heading="End Grain Flooring"
           >
-            <ImageFocus src={logo} alt="test" />
+            <>
+              <BigImagePresentation>
+                <ImageFocus fill={true} src={egf1} alt="end grain flooring" />
+              </BigImagePresentation>
+              <ImagePresentationColumn>
+                <ImagePresentationRow>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      src={egf1}
+                      fill={true}
+                      alt="end grain flooring"
+                    />
+                  </ImagePresentationWrapper>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      src={egf2}
+                      fill={true}
+                      alt="end grain flooring"
+                    />
+                  </ImagePresentationWrapper>
+                </ImagePresentationRow>
+              </ImagePresentationColumn>
+            </>
           </ProductSection>
+
           <ProductSection
             reverse
             text="Our commitment to sustainability is a testament to our
@@ -194,40 +219,50 @@ export default function Home() {
             more sustainable future for all."
             heading="Sustainably Harvested Lumber"
           >
-            <ImagePresentationColumn>
-              <ImagePresentationRow>
-                <ImagePresentationWrapper>
-                  <ImageFocus
-                    fill={true}
-                    src={shl1}
-                    alt="sustainably harvested lumber"
-                  />
-                </ImagePresentationWrapper>
-                <ImagePresentationWrapper>
-                  <ImageFocus
-                    fill={true}
-                    src={shl2}
-                    alt="sustainably harvested lumber"
-                  />
-                </ImagePresentationWrapper>
-              </ImagePresentationRow>
-              <ImagePresentationRow>
-                <ImagePresentationWrapper>
-                  <ImageFocus
-                    fill={true}
-                    src={shl3}
-                    alt="sustainably harvested lumber"
-                  />
-                </ImagePresentationWrapper>
-                <ImagePresentationWrapper>
-                  <ImageFocus
-                    fill={true}
-                    src={shl4}
-                    alt="sustainably harvested lumber"
-                  />
-                </ImagePresentationWrapper>
-              </ImagePresentationRow>
-            </ImagePresentationColumn>
+            <>
+              <BigImagePresentation>
+                <ImageFocus
+                  fill={true}
+                  src={shl1}
+                  alt="sustainably harvested lumber"
+                />
+              </BigImagePresentation>
+
+              <ImagePresentationColumn>
+                <ImagePresentationRow>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      fill={true}
+                      src={shl1}
+                      alt="sustainably harvested lumber"
+                    />
+                  </ImagePresentationWrapper>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      fill={true}
+                      src={shl2}
+                      alt="sustainably harvested lumber"
+                    />
+                  </ImagePresentationWrapper>
+                </ImagePresentationRow>
+                <ImagePresentationRow>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      fill={true}
+                      src={shl3}
+                      alt="sustainably harvested lumber"
+                    />
+                  </ImagePresentationWrapper>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      fill={true}
+                      src={shl4}
+                      alt="sustainably harvested lumber"
+                    />
+                  </ImagePresentationWrapper>
+                </ImagePresentationRow>
+              </ImagePresentationColumn>
+            </>
           </ProductSection>
           <ProductSection
             text="Eshbach Wood Products takes pride in crafting exquisite end
@@ -247,15 +282,19 @@ export default function Home() {
         className="min-h-screen mt-36 flex flex-col gap-16 items-center"
       >
         <h2 className="md:text-5xl text-3xl font-bold">Contact Us</h2>
-        <div className="flex flex-col gap-4 bg-green-500 text-center text-black rounded-md text-3xl p-8">
+        <div className="flex [&>*]:flex [&>*]:flex-col [&>*]:gap-2 flex-col md:gap-4 bg-green-500 text-center text-black rounded-md text-lg md:text-3xl py-8 px-2 md:p-8">
           <div>
             <p>Give us a call</p>
-            <a href="tel:+17177999517">(717) 799-9517</a>
+            <a href="tel:+17177999517" className="font-semibold">
+              (717) 799-9517
+            </a>
           </div>
           <p>or</p>
           <div>
             <p>Message us</p>
-            <a href="mailto:">test@test.com</a>
+            <a href="mailto:" className="font-semibold">
+              eshbachwoodproducts@hotmail.com
+            </a>
           </div>
         </div>
         <div className="flex flex-col items-center gap-4">
@@ -297,7 +336,7 @@ const ProductSection = ({
         <h3 className="text-3xl text-green-600 font-semibold">{heading}</h3>
         <p className="text-lg">{text}</p>
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 flex items-center justify-center">{children}</div>
     </div>
   );
 };
@@ -308,12 +347,14 @@ const ImageFocus = ({
   fill,
   width,
   height,
+  className,
 }: {
   src: StaticImageData;
   alt: string;
   fill?: boolean;
   width?: number;
   height?: number;
+  className?: string;
 }) => {
   const [imageFocused, setImageFocused] = useState(false);
 
@@ -321,7 +362,7 @@ const ImageFocus = ({
     <>
       <Image
         onClick={() => setImageFocused(true)}
-        className="cursor-pointer"
+        className={"cursor-pointer md:rounded-md " + className}
         src={src}
         fill={fill}
         width={fill ? undefined : width ? width : 100}
@@ -338,6 +379,7 @@ const ImageFocus = ({
             >
               <div className="lg:w-[55rem] lg:h-[50rem] sm:w-[35rem] w-[25rem] h-[20rem] sm:h-[30rem] md:w-[45rem] md:h-[40rem] relative flex">
                 <Image
+                  className={className}
                   onClick={() => setImageFocused(true)}
                   src={src}
                   fill={true}
@@ -359,7 +401,11 @@ const ImageFocus = ({
   );
 };
 
-const ImagePresentationWrapper = ({ children }: { children: JSX.Element }) => {
+const ImagePresentationWrapper = ({
+  children,
+}: {
+  children: JSX.Element | JSX.Element;
+}) => {
   return (
     <div className="relative flex w-[8.5rem] h-[8rem] md:w-[15rem] md:h-[11.5rem] lg:w-[20rem] lg:h-[16.5rem]">
       {children}
@@ -367,12 +413,34 @@ const ImagePresentationWrapper = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-const ImagePresentationColumn = ({ children }: { children: JSX.Element[] }) => {
+const ImagePresentationColumn = ({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) => {
   return (
-    <div className="flex lg:gap-8 gap-4 flex-col items-center">{children}</div>
+    <div className="flex md:hidden lg:gap-8 gap-4 flex-col items-center">
+      {children}
+    </div>
   );
 };
 
-const ImagePresentationRow = ({ children }: { children: JSX.Element[] }) => {
+const ImagePresentationRow = ({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) => {
   return <div className="flex lg:gap-4 gap-2">{children}</div>;
+};
+
+const BigImagePresentation = ({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) => {
+  return (
+    <div className="hidden relative xl:w-[22rem] xl:h-[20rem] md:w-[17rem] md:h-[15rem] md:flex w-12 h-12">
+      {children}
+    </div>
+  );
 };
