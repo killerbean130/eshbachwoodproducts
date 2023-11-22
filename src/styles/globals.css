@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Metamorphous&display=swap");
-
-#fancy {
-  font-family: "Metamorphous", serif;
-}
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #333;

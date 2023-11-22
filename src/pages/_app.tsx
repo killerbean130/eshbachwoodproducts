@@ -30,6 +30,16 @@ export default function App({ Component, pageProps }: AppProps) {
           harvested lumber. Embrace our commitment to quality and environmental
           stewardship in every product."
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Component {...pageProps} />
     </>
