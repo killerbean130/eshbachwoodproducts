@@ -124,7 +124,9 @@ export default function Home() {
             />
           </div>
           <div>
-            <h1 className="md:text-5xl text-2xl">Eshbach Wood Products</h1>
+            <h1 className="md:text-5xl text-2xl" id="fancy">
+              Eshbach Wood Products
+            </h1>
             <p className="text-center">est. 2009</p>
           </div>
           <h2 className="md:text-4xl text-xl text-center">
