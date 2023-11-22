@@ -273,7 +273,7 @@ export default function Home() {
             focal point of beauty and timeless design in any setting."
             heading="End Grain Table Tops"
           >
-            <div className="flex-1">Images</div>
+            <div className="flex-1"></div>
           </ProductSection>
         </div>
       </div>
