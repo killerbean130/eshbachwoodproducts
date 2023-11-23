@@ -54,7 +54,7 @@ export default function Home() {
                 src={logo}
                 fill={true}
                 placeholder="blur"
-                alt="eshbach wood products logo"
+                alt="Eshbach Wood Products logo"
               />
             </button>
           </div>
