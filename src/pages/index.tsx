@@ -9,6 +9,7 @@ import shl1 from "../../public/shl1.jpg";
 import shl2 from "../../public/shl2.jpg";
 import shl3 from "../../public/shl3.jpg";
 import shl4 from "../../public/shl4.jpg";
+import shl5 from "../../public/shl5.jpg";
 import egf1 from "../../public/egf1.jpg";
 import egf2 from "../../public/egf2.jpg";
 
@@ -17,6 +18,7 @@ export default function Home() {
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,7 +36,8 @@ export default function Home() {
   }, []);
 
   function scrollToRef(ref: any) {
-    const topPadding = window.screen.width > 768 ? 300 : 235;
+    const topPadding =
+      (document.querySelector("header")?.offsetHeight as number) + 10;
     window.scrollTo({
       top: ref.current?.offsetTop! - topPadding,
       behavior: "smooth",
@@ -42,7 +45,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:gap-20">
       <header className="sticky top-0 z-40 dark:bg-[#222] bg-green-500 md:py-8 py-4 px-8">
         <nav className="flex justify-between">
           <div className="flex md:w-24 md:h-20 w-20 h-16 relative">
@@ -90,6 +93,11 @@ export default function Home() {
                     </button>
                   </li>
                   <li>
+                    <button onClick={() => scrollToRef(galleryRef)}>
+                      gallery
+                    </button>
+                  </li>
+                  <li>
                     <button onClick={() => scrollToRef(contactRef)}>
                       contact
                     </button>
@@ -107,6 +115,9 @@ export default function Home() {
               <button onClick={() => scrollToRef(productsRef)}>products</button>
             </li>
             <li>
+              <button onClick={() => scrollToRef(galleryRef)}>gallery</button>
+            </li>
+            <li>
               <button onClick={() => scrollToRef(contactRef)}>contact</button>
             </li>
           </ul>
@@ -114,7 +125,7 @@ export default function Home() {
       </header>
       <div
         ref={aboutRef}
-        className="min-h-[85vh] mt-14 items-center flex flex-col md:gap-32 gap-10"
+        className="min-h-[85vh] items-center flex flex-col md:gap-32 gap-10"
       >
         <div className="flex flex-col items-center gap-4">
           <div className="flex md:w-52 md:h-48 w-36 h-32 relative">
@@ -167,12 +178,12 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 2xl:px-[24rem] mt-20">
+      <div
+        ref={productsRef}
+        className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 2xl:px-[24rem]"
+      >
         <h2 className="md:text-5xl text-3xl font-bold">Our Products</h2>
-        <div
-          ref={productsRef}
-          className="min-h-screen md:gap-52 gap-16 flex flex-col"
-        >
+        <div className="min-h-screen md:gap-52 gap-16 flex flex-col">
           <ProductSection
             text="At Eshbach Wood Products, our end grain flooring stands as a
                 hallmark of exceptional craftsmanship. Each piece is
@@ -277,9 +288,57 @@ export default function Home() {
           </ProductSection>
         </div>
       </div>
+      <div ref={galleryRef}>
+        <div className="flex items-center gap-24 flex-col px-8 md:px-12 xl:px-56 2xl:px-[24rem]">
+          <h2 className="md:text-5xl text-3xl font-bold">Gallery</h2>
+          <div className="flex md:gap-4 gap-2 flex-wrap justify-center">
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={shl2}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus fill={true} src={egf2} alt="end grain flooring" />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={shl3}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={shl1}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={shl4}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus fill={true} src={egf1} alt="end grain flooring" />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={shl5}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+          </div>
+        </div>
+      </div>
       <div
         ref={contactRef}
-        className="min-h-screen mt-36 flex flex-col gap-16 items-center"
+        className="min-h-screen flex flex-col gap-16 items-center"
       >
         <h2 className="md:text-5xl text-3xl font-bold">Contact Us</h2>
         <div className="flex [&>*]:flex [&>*]:flex-col [&>*]:gap-2 flex-col md:gap-4 bg-green-500 text-center text-black rounded-md text-lg md:text-3xl py-8 px-2 md:p-8">
