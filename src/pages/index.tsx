@@ -367,7 +367,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-between text-xs px-2">
-        <p>Eshbachwoodproducts LLC © 2023</p>
+        <p>Eshbach Wood Products LLC © 2023</p>
         <p>website by Daniel Comp</p>
       </div>
     </div>

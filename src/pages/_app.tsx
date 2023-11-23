@@ -8,6 +8,21 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Eshach Wood Products</title>
+        <meta
+          name="keywords"
+          content="Eshbach Wood Products,
+                  End Grain Flooring,
+                  End Grain Table Tops,
+                  Sustainable Woodworking,
+                  Lancaster Wood Products,
+                  Craftsmanship in Wood,
+                  Eco-Friendly Wood Products,
+                  Pennsylvania Lumber,
+                  Artisanal Wood Design,
+                  Quality Wood Furnishings,
+                  Woodworker,
+                  Sawmill"
+        />
         <meta property="og:title" content="Eshach Wood Products" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://eshbachwoodproducts.com/" />
