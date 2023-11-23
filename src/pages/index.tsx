@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col md:gap-20">
+    <div className="flex flex-col md:gap-20 gap-14">
       <header className="sticky top-0 z-40 dark:bg-[#222] bg-green-500 md:py-8 py-4 px-8">
         <nav className="flex justify-between">
           <div className="flex md:w-24 md:h-20 w-20 h-16 relative">
