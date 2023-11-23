@@ -133,7 +133,7 @@ export default function Home() {
               src={logo}
               fill={true}
               placeholder="blur"
-              alt="eshbach wood products logo"
+              alt="Eshbach Wood Products logo"
             />
           </div>
           <div>
@@ -147,14 +147,16 @@ export default function Home() {
           </h2>
         </div>
         <p className="md:text-2xl text-center text-lg w-[80%] md:w-[75%] lg:w-[50%]">
-          Welcome to Eshbach Wood Products, where the art of woodcraft meets the
-          heart of sustainability. Our specialty lies in creating stunning end
-          grain table tops and durable end grain flooring, each piece a
-          testament to the natural beauty of Pennsylvania's forests. Crafted
-          from sustainably harvested lumber, our products not only add elegance
-          and character to your space but also embody our commitment to
-          environmental stewardship. Experience the blend of traditional
-          craftsmanship and modern sustainability with Eshbach Wood Products.
+          Welcome to Eshbach Wood Products, based in the serene setting of
+          Holtwood PA, where the art of woodcraft meets the heart of
+          sustainability. Our specialty lies in creating stunning end grain
+          table tops and durable end grain flooring, each a testament to the
+          natural beauty of Pennsylvania's forests. In the heart of Holtwood, we
+          craft these pieces from sustainably harvested lumber, ensuring our
+          products add both elegance and character to your space while embodying
+          our deep commitment to environmental stewardship. Join us in
+          experiencing a blend of traditional craftsmanship and modern
+          sustainability at Eshbach Wood Products.
         </p>
 
         <button
