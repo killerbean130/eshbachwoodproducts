@@ -13,6 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
           content="Eshbach Wood Products,
                   End Grain Flooring,
                   End Grain Table Tops,
+                  Holtwood,
+                  Lancaster,
                   Sustainable Woodworking,
                   Lancaster Wood Products,
                   Craftsmanship in Wood,
