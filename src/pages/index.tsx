@@ -10,8 +10,11 @@ import shl2 from "../../public/shl2.jpg";
 import shl3 from "../../public/shl3.jpg";
 import shl4 from "../../public/shl4.jpg";
 import shl5 from "../../public/shl5.jpg";
-import egf1 from "../../public/egf1.jpg";
-import egf2 from "../../public/egf2.jpg";
+import egt1 from "../../public/egt1.jpg";
+import egt2 from "../../public/egt2.jpg";
+import rand1 from "../../public/rand1.jpg";
+import rand2 from "../../public/rand2.jpg";
+import rand3 from "../../public/rand3.jpg";
 
 export default function Home() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -199,20 +202,13 @@ export default function Home() {
           >
             <>
               <BigImagePresentation>
-                <ImageFocus fill={true} src={egf1} alt="end grain flooring" />
+                <ImageFocus fill={true} src={egt1} alt="end grain flooring" />
               </BigImagePresentation>
               <ImagePresentationColumn>
                 <ImagePresentationRow>
                   <ImagePresentationWrapper>
                     <ImageFocus
-                      src={egf1}
-                      fill={true}
-                      alt="end grain flooring"
-                    />
-                  </ImagePresentationWrapper>
-                  <ImagePresentationWrapper>
-                    <ImageFocus
-                      src={egf2}
+                      src={egt1}
                       fill={true}
                       alt="end grain flooring"
                     />
@@ -286,7 +282,22 @@ export default function Home() {
             focal point of beauty and timeless design in any setting."
             heading="End Grain Table Tops"
           >
-            <div className="flex-1"></div>
+            <>
+              <BigImagePresentation>
+                <ImageFocus src={egt2} fill={true} alt="end grain table top" />
+              </BigImagePresentation>
+              <ImagePresentationColumn>
+                <ImagePresentationRow>
+                  <ImagePresentationWrapper>
+                    <ImageFocus
+                      src={egt2}
+                      fill={true}
+                      alt="end grain table top"
+                    />
+                  </ImagePresentationWrapper>
+                </ImagePresentationRow>
+              </ImagePresentationColumn>
+            </>
           </ProductSection>
         </div>
       </div>
@@ -302,7 +313,7 @@ export default function Home() {
               />
             </ImagePresentationWrapper>
             <ImagePresentationWrapper>
-              <ImageFocus fill={true} src={egf2} alt="end grain flooring" />
+              <ImageFocus fill={true} src={egt2} alt="end grain flooring" />
             </ImagePresentationWrapper>
             <ImagePresentationWrapper>
               <ImageFocus
@@ -326,12 +337,33 @@ export default function Home() {
               />
             </ImagePresentationWrapper>
             <ImagePresentationWrapper>
-              <ImageFocus fill={true} src={egf1} alt="end grain flooring" />
+              <ImageFocus fill={true} src={egt1} alt="end grain flooring" />
             </ImagePresentationWrapper>
             <ImagePresentationWrapper>
               <ImageFocus
                 fill={true}
                 src={shl5}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={rand1}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={rand2}
+                alt="sustainably harvested lumber"
+              />
+            </ImagePresentationWrapper>
+            <ImagePresentationWrapper>
+              <ImageFocus
+                fill={true}
+                src={rand3}
                 alt="sustainably harvested lumber"
               />
             </ImagePresentationWrapper>
@@ -448,7 +480,7 @@ const ImageFocus = ({
                 />
                 <button
                   onClick={() => setImageFocused(false)}
-                  className="absolute right-0 top-0 text-2xl rounded-full"
+                  className="text-white font-semibold absolute right-2 top-0 text-2xl rounded-full"
                   aria-label="close image modal"
                 >
                   X
